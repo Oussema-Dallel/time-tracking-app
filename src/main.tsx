@@ -1,5 +1,6 @@
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
+import { GlobalStyle } from './theming/GlobalStyle.ts';
 import { Providers } from './Providers.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -12,6 +13,7 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
 			Router={ BrowserRouter }
 			store={ store }
 		>
+			<GlobalStyle />
 			<App />
 		</Providers>
 	</React.StrictMode>,
