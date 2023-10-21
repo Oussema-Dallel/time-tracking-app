@@ -111,6 +111,12 @@ module.exports = {
     'import/no-unassigned-import': [ 'error' ],
     'import/no-anonymous-default-export': [ 'error' ],
     'import/group-exports': [ 'error' ],
+    'import/no-unresolved': [
+      'error',
+      {
+        'ignore': ['\\.svg\\?react$']
+      },
+    ],
 
     // eslint-plugin-react
     'react/function-component-definition': [ 'error', {

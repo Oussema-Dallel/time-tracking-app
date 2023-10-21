@@ -1,8 +1,9 @@
+import { NavigationLink } from './components/Layout/NavigationLink';
 import type { FunctionComponent, ReactElement } from 'react';
 
 const App: FunctionComponent = (): ReactElement => {
 	return (
-		<h1>A simple time tracking application</h1>
+		<NavigationLink to="/">Go there</NavigationLink>
 	);
 };
 
