@@ -6,20 +6,17 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import type { Color } from '../../utils/color/Color';
 import { colorToCss } from '../../utils/color/colorToCss';
-import type { Dayjs } from 'dayjs';
 import { EventEditButton } from './EventEditButton';
 import { isNotNil } from '../../utils/isNotNil';
 import { removeEvent } from '../../store/slices/events';
 import { styled } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import type { UserEvent } from '../../interfaces/UserEvent';
 import { type FunctionComponent, type ReactElement, useCallback } from 'react';
 
 interface EventCardProps {
-	readonly color?: Color;
-	readonly endTime: Dayjs;
-	readonly id: number;
-	readonly startTime: Dayjs;
-	readonly title: string;
+	readonly event: UserEvent;
+	readonly handleClickEvent: (event: UserEvent) => void;
 }
 
 const CardWithColor = styled(Card)<{ $color?: Color }>`
@@ -27,33 +24,35 @@ const CardWithColor = styled(Card)<{ $color?: Color }>`
 `;
 
 const EventCard: FunctionComponent<EventCardProps> = ({
-	endTime,
-	startTime,
-	title,
-	color = undefined,
-	id,
+	event,
+	handleClickEvent: onHandleEventClicked,
 }): ReactElement => {
 	const dispatch = useDispatch<AppDispatch>();
 
 	const handleEventDeleted = useCallback((): void => {
-		dispatch(removeEvent(id));
-	}, [ dispatch, id ]);
+		dispatch(removeEvent(event.id));
+	}, [ dispatch, event.id ]);
+
+	const handleClickEvent = useCallback(() => {
+		onHandleEventClicked(event);
+	}, [ onHandleEventClicked, event ]);
 
 	return (
 		<CardWithColor
-			$color={ color }
+			$color={ event.color }
+			onClick={ handleClickEvent }
 			variant='outlined'
 		>
 			<CardHeader
-				title={ title }
+				title={ event.title }
 			/>
 			<CardContent>
-				<p>Start Time: { startTime.toString() }</p>
-				<p>End Time: { endTime.toString() }</p>
-				<p>Duration: { endTime.toDate().getHours() - startTime.toDate().getHours() } hours</p>
+				<p>Start Time: { event.start.toString() }</p>
+				<p>End Time: { event.end.toString() }</p>
+				<p>Duration: { event.end.toDate().getHours() - event.start.toDate().getHours() } hours</p>
 			</CardContent>
 			<CardActions>
-				<EventEditButton id={ id } />
+				<EventEditButton id={ event.id } />
 				<Button
 					onClick={ handleEventDeleted }
 					variant='contained'

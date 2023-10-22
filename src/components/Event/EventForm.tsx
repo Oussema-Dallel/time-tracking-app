@@ -1,6 +1,6 @@
 import { ColorPicker } from '../../shared/components/ColorPicker';
 import { ControlledTextField } from '../../shared/components/ControlledTextField';
-import { DatePicker } from '@mui/x-date-pickers';
+import { DateTimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { isNil } from '../../utils/isNil';
 import { isRgbaColor } from '../../utils/color/Color';
@@ -145,13 +145,13 @@ const EventForm: FunctionComponent<EventFormProps> = ({ handleClose }): ReactEle
 				value={ title.value }
 			/>
 			<EventTime>
-				<DatePicker
+				<DateTimePicker
 					// @ts-expect-error this should be fine.
 					onChange={ startTime.handleValueChange }
 					onError={ startTime.handleShowError }
 					value={ startTime.value }
 				/>
-				<DatePicker
+				<DateTimePicker
 					// @ts-expect-error this should be fine.
 					onChange={ endTime.handleValueChange }
 					onError={ endTime.handleShowError }
