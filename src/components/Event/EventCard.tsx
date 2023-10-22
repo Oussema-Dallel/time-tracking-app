@@ -21,7 +21,7 @@ interface EventCardProps {
 
 const CardWithColor = styled(Card)<{ $color?: Color }>`
     background-color: ${({ $color }): string => isNotNil($color) ? colorToCss($color) : 'unset'};
-`;
+` as typeof Card;
 
 const EventCard: FunctionComponent<EventCardProps> = ({
 	event,
@@ -38,6 +38,7 @@ const EventCard: FunctionComponent<EventCardProps> = ({
 	}, [ onHandleEventClicked, event ]);
 
 	return (
+		// @ts-expect-error This should work as the $color prop is defined in the CardWithColor component
 		<CardWithColor
 			$color={ event.color }
 			onClick={ handleClickEvent }

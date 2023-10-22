@@ -1,8 +1,8 @@
-import { styled, Typography } from '@mui/material';
-import type { UserEvent } from '../../../interfaces/UserEvent';
-import type { FunctionComponent, ReactElement } from 'react';
 import type { Color } from '../../../utils/color/Color';
 import { colorToCss } from '../../../utils/color/colorToCss';
+import type { UserEvent } from '../../../interfaces/UserEvent';
+import type { FunctionComponent, ReactElement } from 'react';
+import { styled, Typography } from '@mui/material';
 
 interface EventDetailsContentProps {
 	readonly event: UserEvent;
@@ -58,6 +58,7 @@ const EventDetailsContent: FunctionComponent<EventDetailsContentProps> = ({ even
 				</LeftSide>
 				<RightSide>
 					<Typography variant='h6'>Color</Typography>
+					{ /* @ts-expect-error we are sure that the color is defined here */ }
 					<ColorPreview color={ color } />
 				</RightSide>
 			</HeaderSection>
