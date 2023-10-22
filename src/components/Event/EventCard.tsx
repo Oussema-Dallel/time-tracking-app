@@ -6,6 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import type { Color } from '../../utils/color/Color';
 import { colorToCss } from '../../utils/color/colorToCss';
+import type { Dayjs } from 'dayjs';
+import { EventEditButton } from './EventEditButton';
 import { isNotNil } from '../../utils/isNotNil';
 import { removeEvent } from '../../store/slices/events';
 import { styled } from '@mui/material';
@@ -14,9 +16,9 @@ import { type FunctionComponent, type ReactElement, useCallback } from 'react';
 
 interface EventCardProps {
 	readonly color?: Color;
-	readonly endTime: Date;
+	readonly endTime: Dayjs;
 	readonly id: number;
-	readonly startTime: Date;
+	readonly startTime: Dayjs;
 	readonly title: string;
 }
 
@@ -46,12 +48,12 @@ const EventCard: FunctionComponent<EventCardProps> = ({
 				title={ title }
 			/>
 			<CardContent>
-				<p>Start Time: { startTime.toLocaleString('de') }</p>
-				<p>End Time: { endTime.toLocaleString('de') }</p>
-				<p>Duration: { endTime.getHours() - startTime.getHours() } hours</p>
+				<p>Start Time: { startTime.toString() }</p>
+				<p>End Time: { endTime.toString() }</p>
+				<p>Duration: { endTime.toDate().getHours() - startTime.toDate().getHours() } hours</p>
 			</CardContent>
 			<CardActions>
-				<Button>Edit Event</Button>
+				<EventEditButton id={ id } />
 				<Button
 					onClick={ handleEventDeleted }
 					variant='contained'

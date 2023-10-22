@@ -1,11 +1,12 @@
 import type { Color } from '../utils/color/Color';
+import type { Dayjs } from 'dayjs';
 
 interface UserEvent {
 	color?: Color;
 	description: string;
-	end: Date;
+	end: Dayjs;
 	id: number;
-	start: Date;
+	start: Dayjs;
 	title: string;
 }
 
