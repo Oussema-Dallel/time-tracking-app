@@ -1,9 +1,9 @@
 import App from './App';
-import { render } from './utils/testUtils';
+import { renderWithProviders } from './utils/testing/Rendering';
 
 describe('<App />', () => {
-	it('should render', () => {
-		const { container } = render(<App />);
+	it('should render', async () => {
+		const { container } = await renderWithProviders(<App />, { initialHistory: [ '/' ] });
 
 		expect(container).toBeInTheDocument();
 	});

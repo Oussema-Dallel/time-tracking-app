@@ -12,6 +12,9 @@ const theme = createTheme({
 			dark: '#1e3ba8',
 			light: '#4c6ef5',
 		},
+		text:{
+			primary: '#19122a',
+		},
 	},
 });
 
