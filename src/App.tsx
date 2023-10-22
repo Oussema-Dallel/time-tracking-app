@@ -1,3 +1,4 @@
+import { Dashboard } from './pages/Dashboard';
 import ErrorBoundary from './utils/UI/ErrorBoundary';
 import { Layout } from './components/Layout/Layout';
 import { Logo } from './components/Layout/Logo';
@@ -11,8 +12,8 @@ const App: FunctionComponent = (): ReactElement => {
 		<Layout
 			links={ [
 				/* eslint-disable react/jsx-key */
-				<NavigationLink to="/">Go there</NavigationLink>
-				, <NavigationLink to="/somewhere">Go Here</NavigationLink>,
+				<NavigationLink to="/">Dashboard</NavigationLink>
+				, <NavigationLink to="/about">About</NavigationLink>,
 				/* eslint-enable react/jsx-key */
 			] }
 			logoComponent={ <Logo LogoImage={ LogoImage } /> }
@@ -20,7 +21,7 @@ const App: FunctionComponent = (): ReactElement => {
 			<ErrorBoundary>
 				<Routes>
 					<Route
-						element={ <h1>This is the homepage</h1> }
+						element={ <Dashboard /> }
 						path="/"
 					/>
 				</Routes>
