@@ -18,3 +18,4 @@ const Logo: FunctionComponent<LogoProps> = ({ LogoImage }): ReactElement => {
 };
 
 export { Logo };
+export type { LogoProps };

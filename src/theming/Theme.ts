@@ -3,14 +3,14 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
 	palette: {
 		primary: {
-			// TODO: Change this to a more appropriate color
-			main: '#d68b55',
-			dark: '#a05c2c',
+			main: '#342456',
+			dark: '#19122a',
+			light: '#4c3a6f',
 		},
 		secondary: {
-			// TODO: Change this to a more appropriate color
-			main: '#3f51b5',
-			dark: '#002984',
+			main: '#3657f7',
+			dark: '#1e3ba8',
+			light: '#4c6ef5',
 		},
 	},
 });
