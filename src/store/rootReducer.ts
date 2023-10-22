@@ -1,8 +1,9 @@
 import type { AppState } from './store';
 import { combineReducers } from '@reduxjs/toolkit';
+import eventsSlice from './slices/events';
 
 const combinedReducers = combineReducers({
-	// ...reducers
+	events: eventsSlice,
 });
 
 type CombinedReducerAction = Parameters<typeof combinedReducers>[1];

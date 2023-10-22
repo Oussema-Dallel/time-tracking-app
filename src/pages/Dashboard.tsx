@@ -1,15 +1,24 @@
+import type { AppState } from '../store/store';
 import { EventCard } from '../components/Event/EventCard';
+import { useSelector } from 'react-redux';
 import type { FunctionComponent, ReactElement } from 'react';
 
 const Dashboard: FunctionComponent = (): ReactElement => {
+	const events = useSelector((state: AppState) => state.events.events);
+
 	return (
 		<>
 			<h1>This is the dashboard</h1>
-			<EventCard
-				endTime={ new Date(2023, 10, 22, 13, 15) }
-				startTime={ new Date(new Date(2023, 10, 22, 12, 15)) }
-				title='Very Important!'
-			/>
+			{ events.map((event) => (
+				<EventCard
+					color={ event.color }
+					endTime={ event.end }
+					id={ event.id }
+					key={ event.id }
+					startTime={ event.start }
+					title={ event.title }
+				/>
+			)) }
 		</>
 	);
 };

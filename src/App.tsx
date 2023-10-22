@@ -1,3 +1,4 @@
+import { About } from './pages/About';
 import { Dashboard } from './pages/Dashboard';
 import ErrorBoundary from './utils/UI/ErrorBoundary';
 import { Layout } from './components/Layout/Layout';
@@ -23,6 +24,10 @@ const App: FunctionComponent = (): ReactElement => {
 					<Route
 						element={ <Dashboard /> }
 						path="/"
+					/>
+					<Route
+						element={ <About /> }
+						path="/about"
 					/>
 				</Routes>
 			</ErrorBoundary>

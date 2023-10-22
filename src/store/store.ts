@@ -1,6 +1,7 @@
 import { configureStore as configureReduxStore } from '@reduxjs/toolkit';
+import rootReducer from './rootReducer';
 import type { AppAction, combinedReducers } from './rootReducer';
-import type { PreloadedState, StoreEnhancer, ThunkDispatch } from '@reduxjs/toolkit';
+import type { PreloadedState, Reducer, StoreEnhancer, ThunkDispatch } from '@reduxjs/toolkit';
 
 const configureStore = (
 	storeEnhancers: StoreEnhancer[],
@@ -8,15 +9,13 @@ const configureStore = (
 // eslint-disable-next-line max-len
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/explicit-module-boundary-types
 ) => configureReduxStore({
-	reducer: {
-		// ...the root reducer
-	},
-	preloadedState: preloadedState,
+	reducer: rootReducer as Reducer<AppState>,
+	preloadedState,
 	enhancers: storeEnhancers,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({
 		serializableCheck: false,
 	}),
-	devTools: import.meta.env.MODE !== 'development',
+	devTools: import.meta.env.MODE === 'development',
 });
 
 const store = configureStore([]);
