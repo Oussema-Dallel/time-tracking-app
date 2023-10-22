@@ -1,6 +1,8 @@
 import type { AppStore } from './store/store';
 import { Provider } from 'react-redux';
 import type { Store } from '@reduxjs/toolkit';
+import { theme } from './theming/Theme';
+import { ThemeProvider } from '@mui/material';
 import type { ComponentType, FunctionComponent, PropsWithChildren, ReactElement } from 'react';
 
 interface ProvidersProps {
@@ -20,7 +22,9 @@ const Providers: FunctionComponent<PropsWithChildren & ProvidersProps> = (
 	return (
 		<Provider store={ store }>
 			<Router>
-				{ children }
+				<ThemeProvider theme={ theme }>
+					{ children }
+				</ThemeProvider>
 			</Router>
 		</Provider>
 	);
