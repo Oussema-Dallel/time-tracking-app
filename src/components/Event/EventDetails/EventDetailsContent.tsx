@@ -1,6 +1,6 @@
-import type { Color } from '../../../utils/color/Color';
-import { colorToCss } from '../../../utils/color/colorToCss';
-import type { UserEvent } from '../../../interfaces/UserEvent';
+import type { Color } from '../../../shared/utils/color/Color';
+import { colorToCss } from '../../../shared/utils/color/colorToCss';
+import type { UserEvent } from '../../../shared/interfaces/UserEvent';
 import type { FunctionComponent, ReactElement } from 'react';
 import { styled, Typography } from '@mui/material';
 

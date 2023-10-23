@@ -1,6 +1,6 @@
 import { About } from './pages/About';
 import { Dashboard } from './pages/Dashboard';
-import ErrorBoundary from './utils/UI/ErrorBoundary';
+import ErrorBoundary from './shared/utils/UI/ErrorBoundary';
 import { EventsReactor } from './Reactors/EventsReactor';
 import { Layout } from './components/Layout/Layout';
 import { Logo } from './components/Layout/Logo';

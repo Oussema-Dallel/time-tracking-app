@@ -1,7 +1,7 @@
 import type { AppDispatch } from '../store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { editEvent } from '../slices/events';
-import type { UserEvent } from '../../interfaces/UserEvent';
+import type { UserEvent } from '../../shared/interfaces/UserEvent';
 import { getEventsFromLocalStorage, setEventsInLocalStorage } from '../utils/localStorageUpdates';
 
 const editEventAndPushToLocalStorage = createAsyncThunk<

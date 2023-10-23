@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import type { UserEvent } from '../../interfaces/UserEvent';
+import type { UserEvent } from '../../shared/interfaces/UserEvent';
 import { z } from 'zod';
 
 const eventsSchema = z.object({

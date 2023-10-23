@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { UserEvent } from '../../interfaces/UserEvent';
+import type { UserEvent } from '../../shared/interfaces/UserEvent';
 
 interface EventsState {
 	events: UserEvent[];

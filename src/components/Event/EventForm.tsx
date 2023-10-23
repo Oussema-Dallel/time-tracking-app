@@ -4,11 +4,11 @@ import { ControlledTextField } from '../../shared/components/ControlledTextField
 import { DateTimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { editEventAndPushToLocalStorage } from '../../store/effects/editEventAndPushToLocalStorage';
-import { isNil } from '../../utils/isNil';
-import { isRgbaColor } from '../../utils/color/Color';
+import { isNil } from '../../shared/utils/isNil';
+import { isRgbaColor } from '../../shared/utils/color/Color';
 import { setToBeEdited } from '../../store/slices/events';
-import { useForm } from '../../hooks/useForm';
-import { useInput } from '../../hooks/input/useInput';
+import { useForm } from '../../shared/hooks/useForm';
+import { useInput } from '../../shared/hooks/input/useInput';
 import type { AppDispatch, AppState } from '../../store/store';
 import { Button, styled, Typography } from '@mui/material';
 import { type FunctionComponent, type ReactElement, useCallback } from 'react';
