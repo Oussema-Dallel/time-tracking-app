@@ -39,7 +39,7 @@ const EventForm: FunctionComponent<EventFormProps> = ({ handleClose }): ReactEle
 		end: editedEvent?.end ?? dayjs(new Date()),
 		start: editedEvent?.start ?? dayjs(new Date()),
 		title: editedEvent?.title ?? '',
-		color: editedEvent?.color ?? [ 0, 0, 0, 0 ],
+		color: editedEvent?.color ?? [ 0, 0, 0, 50 ],
 	};
 
 	const title = useInput({

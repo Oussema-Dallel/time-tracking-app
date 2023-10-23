@@ -5,9 +5,16 @@ import { EventCard } from '../components/Event/EventCard';
 import { EventDetails } from '../components/Event/EventDetails/EventDetails';
 import { isNotNil } from '../utils/isNotNil';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import { styled } from '@mui/material';
 import type { UserEvent } from '../interfaces/UserEvent';
 import { useSelector } from 'react-redux';
 import { type FunctionComponent, type ReactElement, useCallback, useState } from 'react';
+
+const Events = styled('div')`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`;
 
 const Dashboard: FunctionComponent = (): ReactElement => {
 	const events = useSelector((state: AppState) => state.events.events);
@@ -24,13 +31,15 @@ const Dashboard: FunctionComponent = (): ReactElement => {
 		<LocalizationProvider dateAdapter={ AdapterDayjs }>
 			<h1>Events Dashboard</h1>
 			<AddEventButton />
-			{ events.map((event) => (
-				<EventCard
-					event={ event }
-					handleClickEvent={ onHandleEventSelected }
-					key={ event.id }
-				/>
-			)) }
+			<Events>
+				{ events.map((event) => (
+					<EventCard
+						event={ event }
+						handleClickEvent={ onHandleEventSelected }
+						key={ event.id }
+					/>
+				)) }
+			</Events>
 			{ isNotNil(selectedEvent)
 				? (
 					<EventDetails
