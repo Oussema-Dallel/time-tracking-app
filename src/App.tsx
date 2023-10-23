@@ -1,6 +1,7 @@
 import { About } from './pages/About';
 import { Dashboard } from './pages/Dashboard';
 import ErrorBoundary from './utils/UI/ErrorBoundary';
+import { EventsReactor } from './Reactors/EventsReactor';
 import { Layout } from './components/Layout/Layout';
 import { Logo } from './components/Layout/Logo';
 import LogoImage from './assets/react.svg?react';
@@ -22,7 +23,7 @@ const App: FunctionComponent = (): ReactElement => {
 			<ErrorBoundary>
 				<Routes>
 					<Route
-						element={ <Dashboard /> }
+						element={ <><EventsReactor /><Dashboard /></> }
 						path="/"
 					/>
 					<Route
