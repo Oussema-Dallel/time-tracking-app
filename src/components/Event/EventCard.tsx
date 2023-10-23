@@ -6,13 +6,14 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import type { Color } from '../../utils/color/Color';
 import { colorToCss } from '../../utils/color/colorToCss';
+import { EventDeleteConfirmation } from './EventDeleteConfirmation';
 import { EventEditButton } from './EventEditButton';
 import { isNotNil } from '../../utils/isNotNil';
-import { removeEvent } from '../../store/slices/events';
+import { removeEventAndPushToLocalStorage } from '../../store/effects/removeEventAndPushToLocalStorage';
 import { styled } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import type { UserEvent } from '../../interfaces/UserEvent';
-import { type FunctionComponent, type ReactElement, useCallback } from 'react';
+import { type FunctionComponent, type ReactElement, useCallback, useState } from 'react';
 
 interface EventCardProps {
 	readonly event: UserEvent;
@@ -21,6 +22,9 @@ interface EventCardProps {
 
 const CardWithColor = styled(Card)<{ $color?: Color }>`
     background-color: ${({ $color }): string => isNotNil($color) ? colorToCss($color) : 'unset'};
+	:hover {
+		cursor: pointer;
+	}
 ` as typeof Card;
 
 const EventCard: FunctionComponent<EventCardProps> = ({
@@ -29,39 +33,59 @@ const EventCard: FunctionComponent<EventCardProps> = ({
 }): ReactElement => {
 	const dispatch = useDispatch<AppDispatch>();
 
-	const handleEventDeleted = useCallback((): void => {
-		dispatch(removeEvent(event.id));
-	}, [ dispatch, event.id ]);
+	const [ isDeleteConfirmationOpen, setIsDeleteConfirmationOpen ] = useState<boolean>(false);
 
 	const handleClickEvent = useCallback(() => {
 		onHandleEventClicked(event);
 	}, [ onHandleEventClicked, event ]);
 
+	const handleEventDeleteOpened = useCallback(() => {
+		setIsDeleteConfirmationOpen(true);
+	}, []);
+
+	const onHandleEventDeleteClosed = useCallback(() => {
+		setIsDeleteConfirmationOpen(false);
+	}, []);
+
+	const onHandleEventDeleted = useCallback((): void => {
+		void dispatch(removeEventAndPushToLocalStorage({ id: event.id }));
+		onHandleEventDeleteClosed();
+	}, [ dispatch, event.id, onHandleEventDeleteClosed ]);
+
 	return (
-		// @ts-expect-error This should work as the $color prop is defined in the CardWithColor component
-		<CardWithColor
-			$color={ event.color }
-			onClick={ handleClickEvent }
-			variant='outlined'
-		>
-			<CardHeader
-				title={ event.title }
-			/>
-			<CardContent>
-				<p>Start Time: { event.start.toString() }</p>
-				<p>End Time: { event.end.toString() }</p>
-				<p>Duration: { event.end.toDate().getHours() - event.start.toDate().getHours() } hours</p>
-			</CardContent>
-			<CardActions>
-				<EventEditButton id={ event.id } />
-				<Button
-					onClick={ handleEventDeleted }
-					variant='contained'
+		<>
+			{ /* @ts-expect-error This should work as the $color prop is defined in the CardWithColor component */ }
+			<CardWithColor
+				$color={ event.color }
+				variant='outlined'
+			>
+				<CardHeader
+					title={ event.title }
+				/>
+				<CardContent
+					onClick={ handleClickEvent }
 				>
-					Delete Event
-				</Button>
-			</CardActions>
-		</CardWithColor>
+					<p>Start Time: { event.start.toString() }</p>
+					<p>End Time: { event.end.toString() }</p>
+					<p>Duration: { event.end.toDate().getHours() - event.start.toDate().getHours() } hours</p>
+				</CardContent>
+				<CardActions>
+					<EventEditButton id={ event.id } />
+					<Button
+						onClick={ handleEventDeleteOpened }
+						variant='contained'
+					>
+						Delete Event
+					</Button>
+				</CardActions>
+			</CardWithColor>
+			<EventDeleteConfirmation
+				eventTitle={ event.title }
+				handleClose={ onHandleEventDeleteClosed }
+				handleDelete={ onHandleEventDeleted }
+				isOpen={ isDeleteConfirmationOpen }
+			/>
+		</>
 	);
 };
 

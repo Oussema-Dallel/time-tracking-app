@@ -1,12 +1,14 @@
+import { addEventAndPushToLocalStorage } from '../../store/effects/addEventAndPushToLocalStorage';
 import { ColorPicker } from '../../shared/components/ColorPicker';
 import { ControlledTextField } from '../../shared/components/ControlledTextField';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
+import { editEventAndPushToLocalStorage } from '../../store/effects/editEventAndPushToLocalStorage';
 import { isNil } from '../../utils/isNil';
 import { isRgbaColor } from '../../utils/color/Color';
+import { setToBeEdited } from '../../store/slices/events';
 import { useForm } from '../../hooks/useForm';
 import { useInput } from '../../hooks/input/useInput';
-import { addEvent, editEvent, setToBeEdited } from '../../store/slices/events';
 import type { AppDispatch, AppState } from '../../store/store';
 import { Button, styled, Typography } from '@mui/material';
 import { type FunctionComponent, type ReactElement, useCallback } from 'react';
@@ -108,21 +110,25 @@ const EventForm: FunctionComponent<EventFormProps> = ({ handleClose }): ReactEle
 			return;
 		}
 		if (isNil(editedEvent?.id)) {
-			dispatch(addEvent({
-				title: title.value,
-				description: description.value,
-				start: startTime.value,
-				end: endTime.value,
-				color: [ color.value[0], color.value[1], color.value[2], 50 ],
+			void dispatch(addEventAndPushToLocalStorage({
+				event: {
+					title: title.value,
+					description: description.value,
+					start: startTime.value,
+					end: endTime.value,
+					color: [ color.value[0], color.value[1], color.value[2], 50 ],
+				},
 			}));
 		} else {
-			dispatch(editEvent({
-				id: editedEvent.id,
-				title: title.value,
-				description: description.value,
-				start: startTime.value,
-				end: endTime.value,
-				color: [ color.value[0], color.value[1], color.value[2], 50 ],
+			void dispatch(editEventAndPushToLocalStorage({
+				event: {
+					id: editedEvent.id,
+					title: title.value,
+					description: description.value,
+					start: startTime.value,
+					end: endTime.value,
+					color: [ color.value[0], color.value[1], color.value[2], 50 ],
+				},
 			}));
 			dispatch(setToBeEdited(null));
 		}
