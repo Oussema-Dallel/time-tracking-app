@@ -10,13 +10,13 @@ In root directory, run:
 
 ```npm run dev```
 
-## Linting
+## Linting(relevant only when using vscode)
 
 For best compatibility with vscode and eslint, install the following extension:
 
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-then add the following to your vscode settings.json:
+then add `.vscode` to the root path and add `settings.json`, the content of the latter should be:
 
 ```json
 {
