@@ -4,15 +4,15 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import type { Color } from '../../utils/color/Color';
-import { colorToCss } from '../../utils/color/colorToCss';
+import type { Color } from '../../shared/utils/color/Color';
+import { colorToCss } from '../../shared/utils/color/colorToCss';
 import { EventDeleteConfirmation } from './EventDeleteConfirmation';
 import { EventEditButton } from './EventEditButton';
-import { isNotNil } from '../../utils/isNotNil';
+import { isNotNil } from '../../shared/utils/isNotNil';
 import { removeEventAndPushToLocalStorage } from '../../store/effects/removeEventAndPushToLocalStorage';
 import { styled } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import type { UserEvent } from '../../interfaces/UserEvent';
+import type { UserEvent } from '../../shared/interfaces/UserEvent';
 import { type FunctionComponent, type ReactElement, useCallback, useState } from 'react';
 
 interface EventCardProps {

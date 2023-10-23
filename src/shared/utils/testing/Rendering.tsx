@@ -1,6 +1,6 @@
-import { configureStore } from '../../store/store';
+import { configureStore } from '../../../store/store';
 import { MemoryRouter } from 'react-router-dom';
-import { Providers } from '../../Providers';
+import { Providers } from '../../../Providers';
 import type { Store } from '@reduxjs/toolkit';
 import { storeSpy } from 'expect-redux';
 import type { FunctionComponent, PropsWithChildren, ReactElement } from 'react';

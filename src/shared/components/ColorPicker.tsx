@@ -1,8 +1,8 @@
-import type { Color } from '../../utils/color/Color';
+import type { Color } from '../utils/color/Color';
 import type { ColorResult } from 'react-color';
-import { colorToCss } from '../../utils/color/colorToCss';
-import { colorToReactColor } from '../../utils/color/colorToReactColor';
-import { reactColorToColor } from '../../utils/color/reactColorToColor';
+import { colorToCss } from '../utils/color/colorToCss';
+import { colorToReactColor } from '../utils/color/colorToReactColor';
+import { reactColorToColor } from '../utils/color/reactColorToColor';
 import { TwitterPicker } from 'react-color';
 import { Button, Popover, styled } from '@mui/material';
 import React, { useCallback } from 'react';

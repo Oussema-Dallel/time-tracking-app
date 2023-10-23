@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { EventFormDialog } from './EventFormDialog';
-import { isNotNil } from '../../utils/isNotNil';
+import { isNotNil } from '../../shared/utils/isNotNil';
 import { setToBeEdited } from '../../store/slices/events';
 import type { AppDispatch, AppState } from '../../store/store';
 import { type FunctionComponent, type ReactElement, useCallback } from 'react';

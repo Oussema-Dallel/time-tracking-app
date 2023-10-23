@@ -1,5 +1,5 @@
 import App from './App';
-import { renderWithProviders } from './utils/testing/Rendering';
+import { renderWithProviders } from './shared/utils/testing/Rendering';
 
 describe('<App />', () => {
 	it('should render', async () => {

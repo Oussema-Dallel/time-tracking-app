@@ -3,10 +3,10 @@ import { AddEventButton } from '../components/Event/AddEventButton';
 import type { AppState } from '../store/store';
 import { EventCard } from '../components/Event/EventCard';
 import { EventDetails } from '../components/Event/EventDetails/EventDetails';
-import { isNotNil } from '../utils/isNotNil';
+import { isNotNil } from '../shared/utils/isNotNil';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { styled } from '@mui/material';
-import type { UserEvent } from '../interfaces/UserEvent';
+import type { UserEvent } from '../shared/interfaces/UserEvent';
 import { useSelector } from 'react-redux';
 import { type FunctionComponent, type ReactElement, useCallback, useState } from 'react';
 
